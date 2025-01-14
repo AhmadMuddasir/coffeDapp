@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+//the abi is copied from the atrfticts to public for better access of data
 import abi from "../../public/chai";
 
 
