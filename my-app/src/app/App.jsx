@@ -2,7 +2,10 @@
 
 import { useEffect, useState } from "react";
 import abi from "../../public/chai";
-
+import { ethers } from "ethers";
+import { Buy } from "@/components/Buy";
+import { Header } from "@/components/Header";
+import { Memo } from "@/components/Memo";
 
 export default function App() {
   const [state, setState] = useState({
@@ -10,55 +13,61 @@ export default function App() {
     signer: null,
     contract: null,
   });
-  const [account,setAccount] = useState('Not connected');
+  const [account, setAccount] = useState("Not connected");
 
-  useEffect(()=>{
-     const template = async () => {
-          try {
-            const contractAddress = "0x64F9B34C5279a543e4c63B50D7b8f65EA4C862fD";
-            const contractABI = abi.abi;
-            console.log(contractABI)
-    
-            // Ensure Metamask is available
-            if (!window.ethereum) {
-              console.error("Metamask is not installed.");
-              return;
-            }
-    
-            const account = await window.ethereum.request({
-              method: "eth_requestAccounts",
-            });
-            setAccount(account);
-    
-            const provider = new ethers.providers.Web3Provider(ethereum);//read the blockchain
-            const signer  =  provider.getSigner();//write the blockchain
+  useEffect(() => {
+    const template = async () => {
+      try {
+        const contractAddress = "0x64F9B34C5279a543e4c63B50D7b8f65EA4C862fD";
+        const contractABI = abi.abi;
 
-            const contract = new ethers.Contract(
-              contractAddress,
-              contractABI,
-              signer
-            )
+        // Ensure Metamask is available
+        if (!window.ethereum) {
+          console.error("Metamask is not installed.");
+          return;
+        }
 
-            setState(provider,signer,contract);
+        const account = await window.ethereum.request({
+          method: "eth_requestAccounts",
+        });
 
+        setAccount(account[0]);
 
-    
-          } catch (error) {
-            console.log(error);
-          }
-        };
-    
-        template();
-  },[])
+        window.ethereum.on("accountsChanged", () => {
+          window.location.reload(); // Reload the page on account change
+        });
 
+        const provider = new ethers.BrowserProvider(window.ethereum); // Updated from Web3Provider
+        const signer = await provider.getSigner(); // getSigner now returns a Promise
 
+        console.log("Provider:", provider);
+        console.log("Signer:", signer);
 
-  return(
-    <div className="flex relative m-2 ">
+        const contract = new ethers.Contract(
+          contractAddress,
+          contractABI,
+          signer
+        );
 
-    <p className="bg-slate-400 m-2 p-2 rounded-sm text-xl  font-bold">
-      Accounts Connected:{account}
-    </p>
-    </div>
-  ) 
+        setState(provider, signer, contract);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    template();
+  }, []);
+
+  return (
+    <>
+      <div className="flex relative m-2 ">
+        <p className="bg-slate-400 m-2 p-2 rounded-sm text-xl  font-bold">
+          Accounts Connected:{account}
+        </p>
+      </div>
+      <Header />
+      <Buy state={state} />
+      <Memo state={state} />
+    </>
+  );
 }
