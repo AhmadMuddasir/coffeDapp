@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+//the abi is copied from the atrfticts to public for better access of data
 import abi from "../../public/chai";
 import { ethers } from "ethers";
 import { Buy } from "@/components/Buy";
@@ -49,6 +50,7 @@ export default function App() {
           signer
         );
 
+<<<<<<< HEAD
         setState(provider, signer, contract);
       } catch (error) {
         console.log(error);
@@ -70,4 +72,11 @@ export default function App() {
       <Memo state={state} />
     </>
   );
+=======
+    <p className="bg-slate-400 m-2 p-2 rounded-sm text-xl  font-bold">
+      Accounts Connected:{account}
+    </p>
+    </div>
+  ) 
+>>>>>>> ac198520dda1de939adca33c6fe6c33d15984552
 }
