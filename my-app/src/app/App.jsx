@@ -41,17 +41,15 @@ export default function App() {
         const provider = new ethers.BrowserProvider(window.ethereum); // Updated from Web3Provider
         const signer = await provider.getSigner(); // getSigner now returns a Promise
 
-        console.log("Provider:", provider);
-        console.log("Signer:", signer);
+
 
         const contract = new ethers.Contract(
           contractAddress,
           contractABI,
           signer
         );
-
-<<<<<<< HEAD
-        setState(provider, signer, contract);
+        console.log(contract);
+        setState({provider, signer, contract});
       } catch (error) {
         console.log(error);
       }
@@ -72,11 +70,7 @@ export default function App() {
       <Memo state={state} />
     </>
   );
-=======
-    <p className="bg-slate-400 m-2 p-2 rounded-sm text-xl  font-bold">
-      Accounts Connected:{account}
-    </p>
-    </div>
-  ) 
->>>>>>> ac198520dda1de939adca33c6fe6c33d15984552
+
+
+// ac198520dda1de939adca33c6fe6c33d15984552
 }
