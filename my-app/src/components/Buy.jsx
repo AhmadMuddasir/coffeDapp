@@ -22,9 +22,10 @@ export const Buy = ({state}) => {
           }
      }
   return (
-    <div className=' m-2 p-2 bg-gray-500'>
+    <div className='flex justify-center items-center flex-col w-full m-2 p-2 bg-gray-500'>
+     <div className='flex flex-col w-[50%]'>
      <p className='text-2xl capitalize'>give you details:</p>
-     <form className='flex w-[30%] flex-col text-black' onSubmit={buyChai}>
+     <form className='flex  flex-col text-black' onSubmit={buyChai}>
           <p className='text-2xl ml-2 '>Name:</p>
           <input id='name' className='m-2 p-1 text-2xl outline-none' placeholder='Name' type="text" />
           <p className='text-2xl ml-2 '>phone Number:</p>
@@ -32,6 +33,7 @@ export const Buy = ({state}) => {
           <button className='bg-blue-400 mt-2 ml-2 p-2 font-bold rounded-sm' type='submit' >Pay:0.001</button>
          
      </form>
+     </div>
     </div>
   )
 }

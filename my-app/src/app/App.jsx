@@ -7,6 +7,8 @@ import { ethers } from "ethers";
 import { Buy } from "@/components/Buy";
 import { Header } from "@/components/Header";
 import { Memo } from "@/components/Memo";
+import GetParticularData from "@/components/GetParticularData";
+
 
 export default function App() {
   const [state, setState] = useState({
@@ -67,6 +69,7 @@ export default function App() {
       </div>
       <Header />
       <Buy state={state} />
+      <GetParticularData state={state} />
       <Memo state={state} />
     </>
   );
