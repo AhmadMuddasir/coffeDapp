@@ -16,7 +16,7 @@ const GetParticularData = ({ state }) => {
 
     console.log(cutomerRecord.name);
   };
-  // getparticularData()
+  
 
   const handleChange = (e) => {
     const number = e.target.value;
