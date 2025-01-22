@@ -3,6 +3,13 @@
 import React, { useEffect, useState } from "react";
 
 const GetParticularData = ({ state }) => {
+
+  // for converting timestamp to date
+  //                   {(() => {
+  //                   const date = new Date(Number(cutomerRecord.timestamp) * 1000); 
+  //                   return date.toLocaleDateString();
+  //                 })()}
+  
   const { contract } = state;
   const [number, SetNumber] = useState("");
   const [cutomerRecord, GetCustomerRecord] = useState([]);
