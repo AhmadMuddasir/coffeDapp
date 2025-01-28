@@ -6,6 +6,7 @@ export const Buy = ({state}) => {
      const buyChai = async()=>{
           try {
                event.preventDefault();
+               // object distructuring
                const {contract} = state;
                const name = document.querySelector("#name").value;
                const number = document.querySelector("#number").value;
